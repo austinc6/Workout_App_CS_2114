@@ -1,0 +1,24 @@
+Workout Start
+2015/04/27 17:24:49
+standardTest R: 1 S: 1
+averageTest W: 5 R: 1 S: 1
+zeroTest T: 0 D: 0
+averageTest W: 10 R: 3 S: 4
+sameTest W: 5 R: 1 S: 1
+differentTest R: 2 S: 2
+sameTest W: 5 R: 1 S: 1
+timeTest R: 1 S: 2
+differentTest T: 5 D: 1
+timeTest T: 5 D: 1
+timeTest W: 0 R: 0 S: 0
+Workout End
+2015/04/27 17:28:06
+
+Workout Start
+2015/04/27 17:28:14
+timeTest W: 0 R: 0 S: 0
+timeTest T: 10 D: 2
+timeTest R: 1 S: 2
+Workout End
+2015/04/27 17:28:50
+

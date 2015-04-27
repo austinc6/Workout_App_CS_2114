@@ -56,13 +56,18 @@ public class WorkoutScreen extends Screen {
     private boolean weightMode;
     private boolean started;
 
+    //private String SAVER_FILE = "savertest.txt";
+    private String PROGRESS_FILE = "progresstest.txt";
+    //private String APP_FILE = "workoutStorage.txt";
+    private String FILE = PROGRESS_FILE;
+
     // Methods ................................................................
     /**
      * This method functions as a constructor for the screen, and starts all
      * widgets, classes, and values
      */
     public void initialize() {
-        //clearFile("savertest.txt"); //This call is only here when testing is
+        //clearFile(FILE); //This call is only here when testing is
         //being performed. The inner argument is the desired file to test on.
         saver = new Saver();
         started = false;
@@ -157,7 +162,10 @@ public class WorkoutScreen extends Screen {
         switch (choice) {
             case 1:
                 int current1 = Integer.parseInt(param1.getText().toString());
-                if (strengthMode) {
+                if (current1 == 0) {
+                    break;
+                }
+                else if (strengthMode) {
                     param1.setText("" + (current1 - 1));
                 }
                 else if (cardioMode) {
@@ -169,13 +177,19 @@ public class WorkoutScreen extends Screen {
                 break;
             case 2:
                 int current2 = Integer.parseInt(param2.getText().toString());
-                if (weightMode) {
+                if (current2 == 0) {
+                    break;
+                }
+                else if (weightMode) {
                     param2.setText("" + (current2 - 5));
                 }
                 break;
             case 3:
                 int current3 = Integer.parseInt(param3.getText().toString());
-                if (strengthMode) {
+                if (current3 == 0) {
+                    break;
+                }
+                else if (strengthMode) {
                     param3.setText("" + (current3 - 1));
                 }
                 else if (cardioMode) {
@@ -319,8 +333,8 @@ public class WorkoutScreen extends Screen {
      */
     public void finalSave() {
         //For testing, the name of this file has been savertest.txt.
-        //For general usage, the name of this file will be workoutStorgae.txt
-        finalSave("savertest.txt");
+        //For general usage, the name of this file will be workoutStorage.txt
+        finalSave(FILE);
     }
 
     /**

@@ -65,6 +65,10 @@ public class WorkoutProgress extends Screen {
     private boolean cardioMode;
     private boolean weightMode;
 
+    //private String SAVER_FILE = "savertest.txt";
+    private String PROGRESS_FILE = "progresstest.txt";
+    private String FILE = PROGRESS_FILE;
+
     // Methods ................................................................
     /**
      * This is the opening method on the class, and runs whenever the screen
@@ -134,7 +138,7 @@ public class WorkoutProgress extends Screen {
         clearTextViews();
         String ret = "";
         try {
-            InputStream inputStream = openFileInput("savertest.txt");
+            InputStream inputStream = openFileInput(FILE);
             if (inputStream != null) {
                 InputStreamReader reader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(reader);
@@ -334,7 +338,7 @@ public class WorkoutProgress extends Screen {
             recParam2.setText("" + recent.reps());
             avgParam2.setText("" + (average.reps() / count));
             firstParam3.setText("" + first.sets());
-            recParam3.setText("" + recent.reps());
+            recParam3.setText("" + recent.sets());
             avgParam3.setText("" + (average.sets() / count));
             performed.setText("" + count);
         }
@@ -430,7 +434,7 @@ public class WorkoutProgress extends Screen {
             recParam1.setText("" + recent.reps());
             avgParam1.setText("" + (average.reps() / count));
             firstParam2.setText("" + first.sets());
-            recParam2.setText("" + recent.reps());
+            recParam2.setText("" + recent.sets());
             avgParam2.setText("" + (average.sets() / count));
             performed.setText("" + count);
         }
