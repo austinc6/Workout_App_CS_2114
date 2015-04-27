@@ -4,7 +4,7 @@ import student.TestCase;
 /**
  * // -------------------------------------------------------------------------
 /**
- *  This is the test for the Exercise object
+ *  This tests all methods and aspects of the Exercise class
  *
  *  @author austinc6
  *  @partner jordyna

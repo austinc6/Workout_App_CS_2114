@@ -8,7 +8,7 @@ import student.TestCase;
 /**
  * // -------------------------------------------------------------------------
 /**
- *  This tests all the methods of the Saver class
+ *  This tests all aspects and methods of the Saver class
  *
  *  @author austinc6
  *  @partner jordyna
@@ -39,7 +39,7 @@ public class SaverTest extends TestCase {
      */
     public void setUp() {
         saver = new Saver();
-        running = new CardioExercise("Running", 10, 10.0f);
+        running = new CardioExercise("Running", 10, 10);
         pushUps = new StrengthExercise("Push-ups", 10, 10);
         benchPress = new WeightExercise("Bench Press", 10, 10,
             10);
@@ -54,7 +54,7 @@ public class SaverTest extends TestCase {
         String saverString = "Workout Start\n";
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
-        saverString += dateFormat.format(date) + "\n\n";
+        saverString += dateFormat.format(date) + "\n";
 
         assertEquals(saverString, saver.getWorkoutString());
     }
@@ -76,10 +76,10 @@ public class SaverTest extends TestCase {
      * This tests the three add exercise methods independently
      */
     public void testAddExerciseA() {
-        saver.addCardioExercise("Running", 10, 10.0f);
+        saver.addCardioExercise("Running", 10, 10);
         saver.addStrengthExercise("Push-ups", 10, 10);
         saver.addWeightExercise("Bench Press", 10, 10, 10);
-        String saverString = "Running T: 10 D: 10.0\n";
+        String saverString = "Running T: 10 D: 10\n";
         saverString += "Push-ups R: 10 S: 10\n";
         saverString += "Bench Press W: 10 R: 10 S: 10\n";
 
@@ -95,7 +95,7 @@ public class SaverTest extends TestCase {
         saver.addExercise(pushUps);
         saver.addExercise(benchPress);
         saver.addExercise(general);
-        String saverString = "Running T: 10 D: 10.0\n";
+        String saverString = "Running T: 10 D: 10\n";
         saverString += "Push-ups R: 10 S: 10\n";
         saverString += "Bench Press W: 10 R: 10 S: 10\n";
         saverString += "General\n";

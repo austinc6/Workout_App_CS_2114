@@ -24,4 +24,168 @@
         android:layout_alignParentTop="true"
         android:text="End Workout" />
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/startWorkout"
+        android:layout_alignRight="@+id/endWorkout"
+        android:layout_below="@+id/startWorkout"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <RadioButton
+        android:id="@+id/strength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editText"
+        android:text="Strength" />
+
+    <RadioButton
+        android:id="@+id/weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/strength"
+        android:layout_alignBottom="@+id/strength"
+        android:layout_alignParentRight="true"
+        android:text="Weight" />
+
+    <RadioButton
+        android:id="@+id/cardio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/strength"
+        android:layout_alignBottom="@+id/strength"
+        android:layout_centerHorizontal="true"
+        android:text="Cardio" />
+
+    <Button
+        android:id="@+id/up3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/up1"
+        android:layout_alignBottom="@+id/up1"
+        android:layout_alignParentRight="true"
+        android:text="+" />
+
+    <TextView
+        android:id="@+id/param3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/param2"
+        android:layout_alignBottom="@+id/param2"
+        android:layout_alignParentRight="true"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/up1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/strength"
+        android:layout_below="@+id/strength"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/down3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/down2"
+        android:layout_alignBottom="@+id/down2"
+        android:layout_alignRight="@+id/param3"
+        android:text="-" />
+
+    <TextView
+        android:id="@+id/submission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text=" "
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/submission"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="Submit Exercise" />
+
+    <TextView
+        android:id="@+id/param2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/down1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/param1"
+        android:layout_below="@+id/param1"
+        android:layout_marginTop="33dp"
+        android:text="-" />
+
+    <Button
+        android:id="@+id/up2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/up3"
+        android:layout_alignBottom="@+id/up3"
+        android:layout_centerHorizontal="true"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/down2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/down1"
+        android:layout_alignBottom="@+id/down1"
+        android:layout_alignLeft="@+id/up2"
+        android:text="-" />
+
+    <TextView
+        android:id="@+id/param1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/up1"
+        android:layout_centerVertical="true"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/param1Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/down1"
+        android:text="Param1" />
+
+    <TextView
+        android:id="@+id/param3Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/param2Name"
+        android:layout_alignBottom="@+id/param2Name"
+        android:layout_alignRight="@+id/down3"
+        android:text="Param3" />
+
+    <TextView
+        android:id="@+id/param2Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/param1Name"
+        android:layout_alignBottom="@+id/param1Name"
+        android:layout_centerHorizontal="true"
+        android:text="Param2" />
+
 </RelativeLayout>

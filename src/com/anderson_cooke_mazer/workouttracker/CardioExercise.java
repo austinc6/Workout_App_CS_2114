@@ -2,22 +2,20 @@ package com.anderson_cooke_mazer.workouttracker;
 /**
  * // -------------------------------------------------------------------------
 /**
- *  Write a one-sentence summary of your class here.
- *  Follow it with additional details about its purpose, what abstraction
- *  it represents, and how to use it.
+ *  This class is the cardio exercise version of the class Exercise
  *
  *  @author austinc6
  *  @partner jordyna
  *  @partner morganm7
- *  @version Apr 21, 2015
+ *  @version 2015.04.21
  */
 public class CardioExercise extends Exercise {
     // Fields .................................................................
     private int time;
-    private float distance;
+    private int distance;
 
     private int TIMECHANGE = 5;
-    private float DISTCHANGE = 0.5f;
+    private int DISTCHANGE = 1;
 
     // Constructors ...........................................................
     /**
@@ -28,7 +26,7 @@ public class CardioExercise extends Exercise {
      * @param time  The amount of time elapsed during the exercise
      * @param distance  The amount of distance covered in the exercise
      */
-    public CardioExercise(String name, int time, float distance) {
+    public CardioExercise(String name, int time, int distance) {
         super(name);
         this.time = time;
         this.distance = distance;
@@ -38,7 +36,7 @@ public class CardioExercise extends Exercise {
      * This can be used to make empty CardioExercise objects
      */
     public CardioExercise() {
-        this("", 0, 0.0f);
+        this("", 0, 0);
     }
 
     // Methods ................................................................
@@ -56,7 +54,7 @@ public class CardioExercise extends Exercise {
      *
      * @return variable distance
      */
-    public float distance() {
+    public int distance() {
         return distance;
     }
 
@@ -88,19 +86,19 @@ public class CardioExercise extends Exercise {
      *
      * @param newDistance   The value distance will be set to
      */
-    public void setDistance(float newDistance) {
+    public void setDistance(int newDistance) {
         distance = newDistance;
     }
 
     /**
-     * Increases the distance by .5, to make the UI of the app simple
+     * Increases the distance by 1, to make the UI of the app simple
      */
     public void distanceUp() {
         setDistance(distance + DISTCHANGE);
     }
 
     /**
-     * Decreases the distance by .5, to make the UI of the app simple
+     * Decreases the distance by 1, to make the UI of the app simple
      */
     public void distanceDown() {
         setDistance(distance - DISTCHANGE);

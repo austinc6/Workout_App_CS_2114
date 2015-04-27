@@ -9,7 +9,7 @@ package com.anderson_cooke_mazer.workouttracker;
  *  @author austinc6
  *  @partner jordyna
  *  @partner morganm7
- *  @version Apr 10, 2015
+ *  @version 2015.04.10
  */
 public class Exercise {
     // Fields .................................................................

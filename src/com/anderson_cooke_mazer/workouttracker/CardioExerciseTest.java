@@ -4,12 +4,12 @@ import student.TestCase;
 /**
  * // -------------------------------------------------------------------------
 /**
- *  Write a one-sentence summary of your class here.
- *  Follow it with additional details about its purpose, what abstraction
- *  it represents, and how to use it.
+ *  This tests all methods and aspects of the CardioExercise class
  *
- *  @author Austinc6
- *  @version Apr 21, 2015
+ *  @author austinc6
+ *  @partner jordyna
+ *  @partner moranm7
+ *  @version 2015.04.21
  */
 public class CardioExerciseTest extends TestCase {
     // Fields .................................................................
@@ -18,7 +18,7 @@ public class CardioExerciseTest extends TestCase {
 
     private String EXERCISE = "Running";
     private int TIME = 10;
-    private float DIST = 10.0f;
+    private int DIST = 10;
 
     // Constructors ...........................................................
     /**
@@ -82,12 +82,12 @@ public class CardioExerciseTest extends TestCase {
      * This method tests all behavior related to the sets attribute
      */
     public void testDistance() {
-        assertEquals(0, exercise1.distance(), 0.1);
+        assertEquals(0, exercise1.distance());
         exercise1.setDistance(DIST);
-        assertEquals(DIST, exercise1.distance(), 0.1);
+        assertEquals(DIST, exercise1.distance());
         exercise1.distanceUp();
-        assertEquals(DIST + .5, exercise1.distance(), 0.1);
+        assertEquals(DIST + 1, exercise1.distance());
         exercise1.distanceDown();
-        assertEquals(DIST, exercise1.distance(), 0.1);
+        assertEquals(DIST, exercise1.distance());
     }
 }

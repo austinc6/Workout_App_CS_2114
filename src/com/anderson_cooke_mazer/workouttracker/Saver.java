@@ -39,7 +39,7 @@ public class Saver {
         workoutString += "Workout Start\n";
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
-        workoutString += dateFormat.format(date) + "\n\n";
+        workoutString += dateFormat.format(date) + "\n";
     }
 
     /**
@@ -89,7 +89,7 @@ public class Saver {
      * @param time  The amount of time elapsed in the exercise
      * @param distance  The distance covered in the exercise
      */
-    public void addCardioExercise(String toAdd, int time, float distance) {
+    public void addCardioExercise(String toAdd, int time, int distance) {
         workoutString += toAdd + " T: " + time + " D: " + distance + "\n";
     }
 

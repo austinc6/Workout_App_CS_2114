@@ -19,13 +19,20 @@
         android:theme="@style/AppTheme" >
         <uses-library android:name="android.test.runner"></uses-library>
         <activity
-            android:name="com.anderson_cooke_mazer.workouttracker.WorkoutScreen"
+            android:name="com.anderson_cooke_mazer.workouttracker.WorkoutTracker"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.anderson_cooke_mazer.workouttracker.WorkoutScreen"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.anderson_cooke_mazer.workouttracker.WorkoutProgress"
+            android:label="@string/app_name" >
         </activity>
     </application>
 

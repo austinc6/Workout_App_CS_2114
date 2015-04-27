@@ -4,12 +4,12 @@ import student.TestCase;
 /**
  * // -------------------------------------------------------------------------
 /**
- *  Write a one-sentence summary of your class here.
- *  Follow it with additional details about its purpose, what abstraction
- *  it represents, and how to use it.
+ *  This tests all the aspects and methods of the StrengthExercise class
  *
- *  @author Austinc6
- *  @version Apr 21, 2015
+ *  @author austinc6
+ *  @partner jordyna
+ *  @partner morganm7
+ *  @version 2015.04.21
  */
 public class StrengthExerciseTest extends TestCase {
     // Fields .................................................................
