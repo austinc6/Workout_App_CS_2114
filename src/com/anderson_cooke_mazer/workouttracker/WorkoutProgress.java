@@ -21,7 +21,12 @@ import sofia.app.Screen;
 /**
  *  This is the screen class that reads from the file saved to, and shows the
  *  data. It uses a stack to store the data from Saver, and then runs through
- *  the stack to interpret and display the data.
+ *  the stack to interpret and display the data. There are three constant
+ *  strings at the end of the fields which can be used to save to specific
+ *  files. SAVER_FILE is the file that was used to test WorkoutScreen and Saver,
+ *  and is not really necessary here. PROGRESS_FILE was used to test this class,
+ *  and the exact testing conditions can be found in the file with the same name
+ *  in this file tree. APP_FILE is the text file used in the final product
  *
  *  @author austinc6
  *  @partner jordyna
@@ -66,13 +71,14 @@ public class WorkoutProgress extends Screen {
     private boolean weightMode;
 
     //private String SAVER_FILE = "savertest.txt";
-    private String PROGRESS_FILE = "progresstest.txt";
-    private String FILE = PROGRESS_FILE;
+    //private String PROGRESS_FILE = "progresstest.txt";
+    private String APP_FILE = "workoutStorage.txt";
+    private String FILE = APP_FILE;
 
     // Methods ................................................................
     /**
      * This is the opening method on the class, and runs whenever the screen
-     * opens
+     * opens. It sets booleans and widgets.
      */
     public void initialize() {
         strengthMode = false;
@@ -95,6 +101,7 @@ public class WorkoutProgress extends Screen {
         cardioProg.setChecked(false);
         weightProg.setChecked(false);
         search.setEnabled(true);
+        //Creates an instance of the correct stack type for this search
         strengthStack = new Stack<StrengthExercise>();
     }
 
@@ -110,6 +117,7 @@ public class WorkoutProgress extends Screen {
         cardioProg.setChecked(true);
         weightProg.setChecked(false);
         search.setEnabled(true);
+        //Creates an instance of the correct stack type for this search
         cardioStack = new Stack<CardioExercise>();
     }
 
@@ -125,11 +133,17 @@ public class WorkoutProgress extends Screen {
         cardioProg.setChecked(false);
         weightProg.setChecked(true);
         search.setEnabled(true);
+        //Creates an instance of the correct stack type for this search
         weightStack = new Stack<WeightExercise>();
     }
 
     /**
-     * This searches the save file for the information to display
+     * This searches the save file for the information to display. It first
+     * reads using an InputStream, and turns that into a string which can then
+     * be read by a scanner. The delimiter in this initial scanner is the
+     * end line character \n.
+     *
+     * @warning This warning is present for the scanner
      *
      * @param term  The search name for the exercise
      */
@@ -165,12 +179,14 @@ public class WorkoutProgress extends Screen {
 
     /**
      * This method runs in a while loop inside the search method, adding values
-     * from the text file to the stack.
+     * from the text file to the stack. It checks the first characters to learn
+     * which type of exercise this is
      *
      * @param term  The search term
      * @param next  The next line from the scanner
      */
     public void addToStack(String term, String next) {
+        //Adds the name of the exercise with its first param name
         if (next.startsWith(term + " W:") && weightMode) {
             weightStack.push(setWeightType(next));
         }
@@ -183,7 +199,11 @@ public class WorkoutProgress extends Screen {
     }
 
     /**
-     * This returns a WeightExercise object by using a scanner on the string
+     * This returns a WeightExercise object by using a scanner on the string.
+     * After finding the values of name, weight, reps, and sets, it returns that
+     * value
+     *
+     * @warning This warning is present for the scanner
      *
      * @param ex    This is the line the weight exercise is on.
      *
@@ -211,6 +231,10 @@ public class WorkoutProgress extends Screen {
 
     /**
      * This returns a CardioExercise object by using a scanner on the string
+     * After finding the values of name, time, and distance, it returns that
+     * value
+     *
+     * @warning This warning is present for the scanner
      *
      * @param ex    This is the line the cardio exercise is on
      *
@@ -234,7 +258,10 @@ public class WorkoutProgress extends Screen {
     }
 
     /**
-     * This returns a StrengthExercise object by using a scanner on the string
+     * This returns a StrengthExercise object by using a scanner on the string.
+     * After finding the values of name, reps, and sets, it returns that value
+     *
+     * @warning This warning is present for the scanner
      *
      * @param ex    This is the line the strength exercise is on.
      *
@@ -259,8 +286,9 @@ public class WorkoutProgress extends Screen {
     }
 
     /**
-     * This method processes the stack, putting all the relevant information on
-     * the screen to display
+     * This method processes the stack, putting up the names of the parameters
+     * which will be displayed and going to the corresponding methods to display
+     * the parameters themselves
      */
     public void processResults() {
         if (weightMode) {
@@ -296,7 +324,7 @@ public class WorkoutProgress extends Screen {
     }
 
     /**
-     * This method sets the values of all the parameters on the left side of
+     * This method sets the values of all the parameters on the right side of
      * the screen with a weight exercise
      */
     public void processWeight() {
@@ -307,10 +335,14 @@ public class WorkoutProgress extends Screen {
         while (!weightStack.isEmpty()) {
             WeightExercise current = weightStack.pop();
             count++;
+            //first will always be at the bottom of the stack
             first = current;
+            //recent will always be at the top of the stack
             if (count == 1) {
                 recent = current;
             }
+            //sums all values in the stack, the averaging is performed in
+            //printWeightValues
             average.setWeight(average.weight() + current.weight());
             average.setReps(average.reps() + current.reps());
             average.setSets(average.sets() + current.sets());
@@ -348,7 +380,7 @@ public class WorkoutProgress extends Screen {
     }
 
     /**
-     * This method sets the values of all the parameters on the left side of
+     * This method sets the values of all the parameters on the right side of
      * the screen with a cardio exercise
      */
     public void processCardio() {
@@ -359,10 +391,14 @@ public class WorkoutProgress extends Screen {
         while (!cardioStack.isEmpty()) {
             CardioExercise current = cardioStack.pop();
             count++;
+            //first will always be at the bottom of the stack
             first = current;
+            //recent will always be at the top of the stack
             if (count == 1) {
                 recent = current;
             }
+            //sums all values in the stack, the averaging is performed in
+            //printCardioValues
             average.setTime(average.time() + current.time());
             average.setDistance(average.distance() + current.distance());
         }
@@ -396,7 +432,7 @@ public class WorkoutProgress extends Screen {
     }
 
     /**
-     * This method sets the values of all the parameters on the left side of
+     * This method sets the values of all the parameters on the right side of
      * the screen with a strength exercise
      */
     public void processStrength() {
@@ -407,10 +443,14 @@ public class WorkoutProgress extends Screen {
         while (!strengthStack.isEmpty()) {
             StrengthExercise current = strengthStack.pop();
             count++;
+            //first will always be at the bottom of the stack
             first = current;
+            //recent will always be at the top of the stack
             if (count == 1) {
                 recent = current;
             }
+            //sums all values in the stack, the averaging is performed in
+            //printStrengthValues
             average.setReps(average.reps() + current.reps());
             average.setSets(average.sets() + current.sets());
         }
@@ -448,6 +488,7 @@ public class WorkoutProgress extends Screen {
      * screen
      */
     public void setWidgets() {
+        //Necessary for the back button
         final Context context = this;
         editText1 = (EditText) findViewById(R.id.editText1);
         strengthProg = (RadioButton) findViewById(R.id.strengthProg);
@@ -511,7 +552,8 @@ public class WorkoutProgress extends Screen {
     }
 
     /**
-     * This method clears the TextViews to clean up the look of the app
+     * This method clears the TextViews to clean up the look of the app during
+     * runtime
      */
     public void clearTextViews() {
         firstPrm1Name.setText("");

@@ -49,6 +49,7 @@ public class Saver {
         workoutString += "Workout End\n";
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
+        //Two end lines to separate the workouts
         workoutString += dateFormat.format(date) + "\n\n";
     }
 
@@ -60,6 +61,7 @@ public class Saver {
      * @param exercise  The exercise to be saved
      */
     public void addExercise(Exercise exercise) {
+        //Checks for the type of the Exercise to save its attributes to file
         if (exercise instanceof CardioExercise) {
             addCardioExercise(exercise.name(),
                 ((CardioExercise)exercise).time(),
@@ -82,8 +84,7 @@ public class Saver {
     }
 
     /**
-     * This is a format for adding cardio exercises to the save file, and allows
-     * some customization
+     * This is a format for adding cardio exercises to the save file
      *
      * @param toAdd The name of the exercise performed
      * @param time  The amount of time elapsed in the exercise
@@ -94,8 +95,7 @@ public class Saver {
     }
 
     /**
-     * This is a format for adding strength exercises to the save file, and
-     * allows some customization
+     * This is a format for adding strength exercises to the save file
      *
      * @param toAdd The name of the exercise performed
      * @param reps  The number of reps performed
@@ -106,8 +106,7 @@ public class Saver {
     }
 
     /**
-     * This is a format for adding weight exercises to the save file, and allows
-     * some customization
+     * This is a format for adding weight exercises to the save file
      *
      * @param toAdd The name of the exercise performed
      * @param weight    The weight that is lifted

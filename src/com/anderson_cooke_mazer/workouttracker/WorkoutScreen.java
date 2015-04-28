@@ -14,13 +14,16 @@ import sofia.app.Screen;
 /**
  * // -------------------------------------------------------------------------
 /**
- *  This is the main screen for the app. It has all functionality to record
- *  exercises in a readable format. Keep in mid that for testing this project,
+ *  This is the exercise screen for the app. It has all functionality to record
+ *  exercises in a readable format. Keep in mind that for testing this project,
  *  some things need to be changed in the main code for testing to run smoothly.
- *  Instances of this include clearing the file on creation, using a specific
- *  testing file rather than the file which is used for the user's information,
- *  and finally not opening the welcome screen upon workout completion, which
- *  halts the tests.
+ *  The constant values at the end of the fields are used for testing. The
+ *  boolean TESTING should be true when running tests. SAVER_FILE is the file
+ *  used for testing this class. PROGRESS_FILE is used to test the
+ *  WorkoutTracker class, and to reproduce the tests correctly, either the
+ *  boolean below can be changed, or the file in this file system titled
+ *  progresstest.txt can be imported directly to the device (through the DDMS).
+ *  APP_FILE is the file used in the actual final product.
  *
  *  @author austinc6
  *  @partner jordyna
@@ -57,9 +60,10 @@ public class WorkoutScreen extends Screen {
     private boolean started;
 
     //private String SAVER_FILE = "savertest.txt";
-    private String PROGRESS_FILE = "progresstest.txt";
-    //private String APP_FILE = "workoutStorage.txt";
-    private String FILE = PROGRESS_FILE;
+    //private String PROGRESS_FILE = "progresstest.txt";
+    private String APP_FILE = "workoutStorage.txt";
+    private String FILE = APP_FILE;
+    private boolean TESTING = false;
 
     // Methods ................................................................
     /**
@@ -67,8 +71,11 @@ public class WorkoutScreen extends Screen {
      * widgets, classes, and values
      */
     public void initialize() {
-        //clearFile(FILE); //This call is only here when testing is
-        //being performed. The inner argument is the desired file to test on.
+        //This is only invoked when testing. It clears the file to ensure
+        //starting conditions.
+        if (TESTING) {
+            clearFile(FILE);
+        }
         saver = new Saver();
         started = false;
         strengthMode = false;
@@ -105,14 +112,19 @@ public class WorkoutScreen extends Screen {
         startWorkout.setEnabled(true);
         this.finalSave();
 
-        //While testing, this next block is a comment, so tests can run
-        //correctly
-        Intent intent = new Intent(this, WorkoutTracker.class);
-        startActivity(intent);
+        //This is not called while testing, because the test won't pass for end
+        //workout if the screen is left. Under normal conditions, it leaves to
+        //the welcome screen
+        if (!TESTING) {
+            Intent intent = new Intent(this, WorkoutTracker.class);
+            startActivity(intent);
+        }
     }
 
     /**
-     * This is the method called by any of the up* buttons.
+     * This is the method called by any of the up* buttons. It parses the
+     * current value, and then adds the constant value built into that
+     * exercise type in their corresponding classes.
      *
      * @param choice    The button pressed
      */
@@ -154,7 +166,10 @@ public class WorkoutScreen extends Screen {
     }
 
     /**
-     * This is the method called by any of the down* buttons.
+     * This is the method called by any of the down* buttons. It parses the
+     * current value, and then adds the constant value built into that
+     * exercise type in their corresponding classes. If the current value is
+     * zero, nothing occurs, to avoid negative values
      *
      * @param choice    The button pressed
      */
@@ -277,6 +292,8 @@ public class WorkoutScreen extends Screen {
      */
     public void submit() {
         submission = (TextView) findViewById(R.id.submission);
+        // This check is on the startworkout button. If that has not been
+        //activated, the workout will not send.
         if (!started) {
             submission.setText("Please click Start Workout first!");
             return;
@@ -285,6 +302,8 @@ public class WorkoutScreen extends Screen {
         int parameter1 = Integer.parseInt(param1.getText().toString());
         int parameter3 = Integer.parseInt(param3.getText().toString());
         Exercise toAdd;
+        //When in cardio or strength mode, parameters 1 and 3 are used, for
+        //aesthetics
         if (strengthMode) {
             int reps = parameter1;
             int sets = parameter3;
@@ -311,13 +330,13 @@ public class WorkoutScreen extends Screen {
     /**
      * This saves the information that the Saver instance holds. This method is
      * the one used directly, and will be left private in the final product.
+     * MODE_APPEND is used so that the file will retain old workouts over time
      *
      * @param fileName  This is the file that will be saved to
      */
-    public void finalSave(String fileName) {
+    private void finalSave(String fileName) {
         String string = saver.getWorkoutString();
         FileOutputStream outputStream;
-
         try {
             outputStream = openFileOutput(fileName, Context.MODE_APPEND);
             outputStream.write(string.getBytes());
@@ -332,17 +351,16 @@ public class WorkoutScreen extends Screen {
      * file which is intended to be used for saving.
      */
     public void finalSave() {
-        //For testing, the name of this file has been savertest.txt.
-        //For general usage, the name of this file will be workoutStorage.txt
         finalSave(FILE);
     }
 
     /**
-     * This clears the file which is sent to it, used for testing
+     * This clears the file which is sent to it, used for testing. MODE_PRIVATE
+     * is used so that the file will be emptied.
      *
      * @param fileName  The file to be cleared
      */
-    public void clearFile(String fileName) {
+    private void clearFile(String fileName) {
         String string = "";
         FileOutputStream outputStream;
 

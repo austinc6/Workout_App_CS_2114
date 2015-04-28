@@ -11,7 +11,9 @@ import android.widget.TextView;
  *  uses a file called progresstest.txt. This file must be written using
  *  WorkoutScreen prior to using it, and the text of the actual file is kept in
  *  a duplicate file in this file system under the same name, so it can be
- *  viewed.
+ *  viewed. For running these tests, specific lines need to be changed to access
+ *  the correct file. Read the opening comment in WorkoutProgress for more
+ *  information.
  *
  *  @author austinc6
  *  @partner jordyna

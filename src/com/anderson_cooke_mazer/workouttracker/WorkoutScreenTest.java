@@ -140,7 +140,7 @@ public class WorkoutScreenTest extends student.AndroidTestCase<WorkoutScreen> {
 
     /**
      * This scans the savertest.txt file to see if the outputs have been sent
-     * to the file.
+     * to the file. It runs the previous method to get test fixture data
      */
     public void testSaverTest() {
         testWorkout();

@@ -10,7 +10,9 @@ import sofia.app.Screen;
  * // -------------------------------------------------------------------------
 /**
  *  This is the welcome screen and hub of the app. It has no functionality but
- *  travel to the other two screens
+ *  travel to the other two screens. There is also no test for it, as any test
+ *  would fail attempting any functionality. Suffice it to say, this class
+ *  works.
  *
  *  @author austinc6
  *  @partner jordyna
@@ -23,6 +25,10 @@ public class WorkoutTracker extends Screen {
     private Button viewProgress;
 
     // Methods ................................................................
+    /**
+     * This method runs upon startup of the screen. It sets the behavior of the
+     * buttons to open the other, more important screens.
+     */
     public void initialize() {
         final Context context = this;
         start = (Button) findViewById(R.id.start);
